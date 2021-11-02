@@ -10,6 +10,7 @@ export interface VotingAttempt {
   salt: string
   accountId: string
   optionId: string
+  voteId?: string
 }
 
 export interface MyCastVote extends VotingAttempt {

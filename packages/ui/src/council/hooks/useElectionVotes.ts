@@ -5,10 +5,10 @@ import { useMyAccounts } from '@/accounts/hooks/useMyAccounts'
 import { BN_ZERO } from '@/common/constants'
 
 import { useGetCouncilVotesQuery } from '../queries'
-import { asVote, ElectionCandidate } from '../types'
+import { asVote, ElectionCandidate, Vote } from '../types'
 import { Election } from '../types/Election'
 
-import { MyCastVote } from './useCommitment'
+import { MyCastVote, VotingAttempt } from './useCommitment'
 import { useStoredCastVotes } from './useStoredCastVotes'
 
 interface CandidateStats {
@@ -24,9 +24,9 @@ export const useElectionVotes = (election: Election) => {
   const { data, loading } = useGetCouncilVotesQuery({
     variables: { where: { electionRound: { cycleId_eq: election.cycleId } } },
   })
-  const myCastVotes = useStoredCastVotes(election.cycleId)
+  const myVotingAttempts = useStoredCastVotes(election.cycleId)
 
-  const votes = useMemo(() => data?.castVotes.map(asVote), [data?.castVotes.length])
+  const electionVotes = useMemo(() => data?.castVotes.map(asVote), [data?.castVotes.length])
 
   const votesPerCandidate = useMemo(() => {
     const candidateStats: Record<string, CandidateStats> = {}
@@ -37,16 +37,10 @@ export const useElectionVotes = (election: Election) => {
           votesNumber: 0,
           totalStake: BN_ZERO,
           ownStake: BN_ZERO,
-          myVotes:
-            myCastVotes
-              ?.filter((myVote) => myVote.optionId === candidate.member.id)
-              .map((myVote) => ({
-                ...myVote,
-                isRevealed: !!votes?.find((vote) => vote.id === myVote.voteId)?.voteFor,
-              })) ?? [],
+          myVotes: getMyVotesForCandidate(myVotingAttempts, electionVotes, candidate),
         })
     )
-    votes?.forEach((vote) => {
+    electionVotes?.forEach((vote) => {
       const candidate = vote.voteFor && candidateStats[vote.voteFor.id]
       if (candidate) {
         candidate.votesNumber += 1
@@ -57,9 +51,9 @@ export const useElectionVotes = (election: Election) => {
       }
     })
     return Object.values(candidateStats).sort((a, b) => b.totalStake.sub(a.totalStake).toNumber())
-  }, [votes?.length, myCastVotes?.length])
+  }, [electionVotes?.length, myVotingAttempts?.length])
 
-  const sumOfStakes = useMemo(() => votes?.reduce((acc, vote) => acc.add(vote.stake), BN_ZERO), [votes])
+  const sumOfStakes = useMemo(() => electionVotes?.reduce((acc, vote) => acc.add(vote.stake), BN_ZERO), [electionVotes])
 
   return {
     votesPerCandidate,
@@ -67,3 +61,15 @@ export const useElectionVotes = (election: Election) => {
     isLoading: loading,
   }
 }
+
+const getMyVotesForCandidate = (
+  votingAttempts: VotingAttempt[] | undefined,
+  electionSubmittedVotes: Vote[] | undefined,
+  candidate: ElectionCandidate
+) =>
+  votingAttempts
+    ?.filter((myVote) => myVote.optionId === candidate.member.id)
+    .map((myVote) => ({
+      ...myVote,
+      isRevealed: !!electionSubmittedVotes?.find((vote) => vote.id === myVote.voteId)?.voteFor,
+    })) ?? []
