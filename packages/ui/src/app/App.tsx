@@ -1,14 +1,13 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
+import { OnBoardingOverlay } from '@/app/components/OnboardingOverlay/OnBoardingOverlay'
 import { CouncilModule } from '@/app/pages/Council/CouncilModule'
 import { NotFound } from '@/app/pages/NotFound'
 import { ConnectionStatus } from '@/common/components/ConnectionStatus'
-import { MembershipOnBoarding } from '@/common/components/MembershipOnBoarding'
 import { Page, Screen } from '@/common/components/page/Page'
 import { NotificationsHolder } from '@/common/components/page/SideNotification'
 import { TransactionStatus } from '@/common/components/TransactionStatus/TransactionStatus'
-import { OnBoardingProvider } from '@/common/providers/onboarding/provider'
 import { CouncilRoutes } from '@/council/constants'
 import { ForumRoutes } from '@/forum/constant'
 import { ProposalsRoutes } from '@/proposals/constants/routes'
@@ -32,9 +31,7 @@ export const App = () => (
     <Page>
       <SideBar />
       <Screen>
-        <OnBoardingProvider>
-          <MembershipOnBoarding />
-        </OnBoardingProvider>
+        <OnBoardingOverlay />
         <Switch>
           <Route path={WorkingGroupsRoutes.groups} component={WorkingGroupsModule} />
           <Route path={ProposalsRoutes.home} component={ProposalsModule} />
@@ -44,10 +41,10 @@ export const App = () => (
           <Route exact path={ProfileRoutes.memberships} component={MyMemberships} />
           <Route exact path={MembersRoutes.members} component={Members} />
           <Route exact path={SettingsRoutes.settings} component={Settings} />
-          <Route exact path="/404" component={NotFound} />
-          <Redirect exact from="/" to={ProfileRoutes.profile} />
+          <Route exact path='/404' component={NotFound} />
+          <Redirect exact from='/' to={ProfileRoutes.profile} />
           <Redirect exact from={ProposalsRoutes.home} to={ProposalsRoutes.current} />
-          <Redirect from="*" to="/404" />
+          <Redirect from='*' to='/404' />
         </Switch>
       </Screen>
     </Page>

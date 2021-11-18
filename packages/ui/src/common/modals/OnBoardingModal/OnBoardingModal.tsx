@@ -11,6 +11,7 @@ import { HorizontalStepper } from '@/common/components/Stepper/HorizontalStepper
 import { TextMedium } from '@/common/components/typography'
 import { Colors } from '@/common/constants'
 import { useApi } from '@/common/hooks/useApi'
+import { useModal } from '@/common/hooks/useModal'
 import { useObservable } from '@/common/hooks/useObservable'
 import { useOnBoarding } from '@/common/hooks/useOnBoarding'
 import { OnBoardingAccount } from '@/common/modals/OnBoardingModal/OnBoardingAccount'
@@ -23,11 +24,8 @@ import { BuyMembershipSuccessModal } from '@/memberships/modals/BuyMembershipMod
 import { buyMembershipMachine } from '@/memberships/modals/BuyMembershipModal/machine'
 import { toMemberTransactionParams } from '@/memberships/modals/utils'
 
-interface Props {
-  toggleModal: () => void
-}
-
-export const OnBoardingModal = ({ toggleModal }: Props) => {
+export const OnBoardingModal = () => {
+  const { hideModal } = useModal()
   const { isLoading, status, setFreeTokens } = useOnBoarding()
   const { api, connectionState } = useApi()
   const membershipPrice = useObservable(api?.query.members.membershipPrice(), [connectionState])
@@ -64,7 +62,7 @@ export const OnBoardingModal = ({ toggleModal }: Props) => {
 
     return (
       <BuyMembershipSignModal
-        onClose={toggleModal}
+        onClose={hideModal}
         membershipPrice={membershipPrice}
         formData={form}
         transaction={transaction}
@@ -76,22 +74,22 @@ export const OnBoardingModal = ({ toggleModal }: Props) => {
 
   if (state.matches('success')) {
     const { form, memberId } = state.context
-    return <BuyMembershipSuccessModal onClose={toggleModal} member={form} memberId={memberId?.toString()} />
+    return <BuyMembershipSuccessModal onClose={hideModal} member={form} memberId={memberId?.toString()} />
   }
 
   if (state.matches('error')) {
     return (
-      <FailureModal onClose={toggleModal} events={state.context.transactionEvents}>
+      <FailureModal onClose={hideModal} events={state.context.transactionEvents}>
         There was a problem with creating a membership for {state.context.form.name}.
       </FailureModal>
     )
   }
 
   return (
-    <StyledModal onClose={toggleModal} modalSize="m" modalHeight="m">
+    <StyledModal onClose={hideModal} modalSize='m' modalHeight='m'>
       <StepperWrapper>
         <HorizontalStepper steps={asOnBoardingSteps(onBoardingSteps, status)} />
-        <StyledCloseButton onClick={toggleModal} />
+        <StyledCloseButton onClick={hideModal} />
       </StepperWrapper>
       {step}
     </StyledModal>
@@ -126,6 +124,7 @@ const StepperWrapper = styled.div`
 
 const StyledModal = styled(ScrolledModal)`
   height: 100%;
+
   > *:last-child {
     background-color: ${Colors.Black[100]};
   }
