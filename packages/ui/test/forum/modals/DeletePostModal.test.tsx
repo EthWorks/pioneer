@@ -45,6 +45,8 @@ describe('UI: DeletePostModal', () => {
     },
     transaction: api.api.tx.forum.deletePosts(
       1,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       new PostsToDeleteMap(registry, [
         [
           {

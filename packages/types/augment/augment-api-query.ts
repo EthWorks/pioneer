@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Option, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types';
-import type { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import type { Application, ApplicationId, BountyActor, BountyId, Candidate, CastVoteOf, Category, CategoryId, Channel, ChannelCategory, ChannelCategoryId, ChannelId, ChannelOwnershipTransferRequest, ChannelOwnershipTransferRequestId, ConstitutionInfo, ContentId, CouncilMemberOf, CouncilStageUpdate, CuratorGroup, CuratorGroupId, DataObject, DataObjectStorageRelationship, DataObjectStorageRelationshipId, DataObjectType, DataObjectTypeId, DiscussionPost, DiscussionThread, Entry, EntryId, ForumUserId, MemberId, Membership, MemoText, ModeratorId, ObjectOwner, Opening, OpeningId, Person, PersonId, Playlist, PlaylistId, Post, PostId, ProposalId, ProposalOf, ReferendumStage, Reply, ReplyId, Series, SeriesId, StakingAccountMemberBinding, ThreadId, ThreadOf, Video, VideoCategory, VideoCategoryId, VideoId, VoteKind, Voucher, Worker, WorkerId } from './all';
+import type { ApiTypes } from '@polkadot/api/types';
+import type { Bytes, Option, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types';
 import type { UncleEntryItem } from '@polkadot/types/interfaces/authorship';
 import type { BabeAuthorityWeight, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
 import type { AccountData, BalanceLock } from '@polkadot/types/interfaces/balances';
@@ -17,7 +17,7 @@ import type { ActiveEraInfo, ElectionResult, ElectionScore, ElectionStatus, EraI
 import type { AccountInfo, DigestOf, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
 import type { Bounty } from '@polkadot/types/interfaces/treasury';
 import type { Multiplier } from '@polkadot/types/interfaces/txpayment';
-import type { ApiTypes } from '@polkadot/api/types';
+import type { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 
 declare module '@polkadot/api/types/storage' {
   export interface AugmentedQueries<ApiType> {

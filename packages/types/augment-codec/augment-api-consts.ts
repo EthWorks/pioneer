@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { Vec, u32, u64, u8 } from '@polkadot/types';
 import type { MaxNumber, ProposalParameters } from './all';
+import type { ApiTypes } from '@polkadot/api/types';
+import type { Vec, u32, u64, u8 } from '@polkadot/types';
 import type { Balance, BalanceOf, BlockNumber, LockIdentifier, Moment, Perbill, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
 import type { SessionIndex } from '@polkadot/types/interfaces/session';
 import type { EraIndex } from '@polkadot/types/interfaces/staking';
 import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
-import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/consts' {
   export interface AugmentedConsts<ApiType> {

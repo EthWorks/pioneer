@@ -49,6 +49,7 @@ export const createBalanceLock = (amount: number, type: LockType = 'Staking Cand
   })
 
 export const EMPTY_BALANCES: DeriveBalancesAll = {
+  vesting: [],
   additional: [],
   accountId: createType('AccountId', '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'),
   accountNonce: createType('Index', 1),
@@ -62,9 +63,7 @@ export const EMPTY_BALANCES: DeriveBalancesAll = {
   reservedBalance: createBalance(0),
   vestedBalance: createBalance(0),
   vestedClaimable: createBalance(0),
-  vestingEndBlock: createType('BlockNumber', 1234),
   vestingLocked: createBalance(0),
-  vestingPerBlock: createBalance(0),
   vestingTotal: createBalance(0),
-  votingBalance: createBalance(0),
+  votingBalance: createBalance(0)
 }

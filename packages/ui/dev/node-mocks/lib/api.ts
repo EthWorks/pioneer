@@ -18,6 +18,8 @@ export const getApi = async () => {
   const endpoint = 'ws://127.0.0.1:9944'
   process.stdout.write(`>> Connecting to API endpoint (${chalk.blue(endpoint)})... `)
   const provider = new WsProvider(endpoint)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const api = await ApiPromise.create({ provider, rpc: jsonrpc, types: types, registry })
 
   console.log(chalk.green('✔'))

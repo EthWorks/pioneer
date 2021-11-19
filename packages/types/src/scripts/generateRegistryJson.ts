@@ -72,6 +72,7 @@ function defsFromTypes(types: RegistryTypes) {
   registry.register(types)
   const defs: RegistryTypes = {}
   Object.entries(registry.knownTypes.types as any).forEach(([typeName, defOrConstructor]) => {
+    // @ts-ignore
     const def = normalizeDef(registry, defOrConstructor, typeName)
     defs[typeName] = def
   })

@@ -1,9 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, BTreeSet, Bytes, Compact, Option, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types';
-import type { AnyNumber } from '@polkadot/types/types';
 import type { ActorId, ApplicationId, ApplyOnOpeningParameters, BalanceKind, BountyActor, BountyCreationParameters, BountyId, BuyMembershipParameters, CategoryId, ChannelCategoryCreationParameters, ChannelCategoryId, ChannelCategoryUpdateParameters, ChannelCreationParameters, ChannelId, ChannelOwnershipTransferRequest, ChannelOwnershipTransferRequestId, ChannelUpdateParameters, ContentActor, ContentId, ContentParameters, CuratorGroupId, CuratorId, DataObjectStorageRelationshipId, DataObjectType, DataObjectTypeId, EntryId, ExtendedPostId, ForumUserId, FundingRequestParameters, GeneralProposalParameters, InviteMembershipParameters, MemberId, MemoText, ModeratorId, ObjectOwner, OpeningId, OpeningType, OracleJudgment, ParticipantId, PersonActor, PersonCreationParameters, PersonId, PersonUpdateParameters, PlaylistCreationParameters, PlaylistId, PlaylistUpdateParameters, PollInput, PostId, PostReactionId, PrivilegedActor, ProposalDetailsOf, ProposalId, ReplyId, ReplyToDelete, SeriesId, SeriesParameters, StakePolicy, StorageProviderId, ThreadId, ThreadMode, VideoCategoryCreationParameters, VideoCategoryId, VideoCategoryUpdateParameters, VideoCreationParameters, VideoId, VideoUpdateParameters, VoteKind, WorkerId, WorkingGroup } from './all';
+import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
+import type { BTreeMap, BTreeSet, Bytes, Compact, Option, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types';
 import type { BabeEquivocationProof } from '@polkadot/types/interfaces/babe';
 import type { Extrinsic, Signature } from '@polkadot/types/interfaces/extrinsics';
 import type { GrandpaEquivocationProof, KeyOwnerProof } from '@polkadot/types/interfaces/grandpa';
@@ -12,10 +12,12 @@ import type { AccountId, Balance, BalanceOf, BlockNumber, Call, ChangesTrieConfi
 import type { Keys } from '@polkadot/types/interfaces/session';
 import type { CompactAssignments, ElectionScore, ElectionSize, EraIndex, RewardDestination, ValidatorIndex, ValidatorPrefs } from '@polkadot/types/interfaces/staking';
 import type { Key } from '@polkadot/types/interfaces/system';
-import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
+import type { AnyNumber } from '@polkadot/types/types';
 
 declare module '@polkadot/api/types/submittable' {
   export interface AugmentedSubmittables<ApiType> {
+    authorityDiscovery: {
+    };
     authorship: {
       /**
        * Provide a set of uncles.
@@ -1995,6 +1997,8 @@ declare module '@polkadot/api/types/submittable' {
     memo: {
       updateMemo: AugmentedSubmittable<(memo: MemoText | string) => SubmittableExtrinsic<ApiType>, [MemoText]>;
     };
+    offences: {
+    };
     operationsWorkingGroup: {
       /**
        * Add a job opening for a regular worker/lead role.
@@ -2320,6 +2324,8 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       vote: AugmentedSubmittable<(voterId: MemberId | AnyNumber | Uint8Array, proposalId: ProposalId | AnyNumber | Uint8Array, vote: VoteKind | 'Approve' | 'Reject' | 'Slash' | 'Abstain' | number | Uint8Array, rationale: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MemberId, ProposalId, VoteKind, Bytes]>;
+    };
+    randomnessCollectiveFlip: {
     };
     referendum: {
       /**

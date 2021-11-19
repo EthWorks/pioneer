@@ -1,7 +1,8 @@
 import { Struct, TypeRegistry } from '@polkadot/types'
 import { RegistryTypes } from '@polkadot/types/types'
-import defs from'./defs.json'
+import defs from './defs.json'
 
+// @ts-ignore
 const emptyStruct = new Struct(new TypeRegistry(), {})
 
 // Prevents errors in interfaces that will be generated based on those types
@@ -20,6 +21,7 @@ Object.entries(defs).forEach(([typeName, typeDef]) => {
     normalizedDefs[typeName] = normalizedDef;
   }
   else {
+    // @ts-ignore
     normalizedDefs[typeName] = typeDef
   }
 })

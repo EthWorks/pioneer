@@ -1,8 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { BTreeMap, BTreeSet, Bytes, Option, Text, Vec, bool, u32, u64, u8 } from '@polkadot/types';
 import type { ActorId, ApplicationId, ApplicationIdToWorkerIdMap, ApplyOnOpeningParameters, BalanceKind, BountyActor, BountyCreationParameters, BountyId, BuyMembershipParameters, CategoryId, Channel, ChannelCategory, ChannelCategoryCreationParameters, ChannelCategoryId, ChannelCategoryUpdateParameters, ChannelCreationParameters, ChannelId, ChannelOwnershipTransferRequest, ChannelOwnershipTransferRequestId, ChannelUpdateParameters, ContentActor, ContentId, ContentParameters, CuratorGroupId, CuratorId, DataObjectStorageRelationshipId, DataObjectType, DataObjectTypeId, EntryId, ExecutionStatus, ExtendedPostId, ForumUserId, GeneralProposalParameters, InviteMembershipParameters, IsCensored, MemberId, MemoText, ModeratorId, NewAsset, OpeningId, OpeningType, OptionResult, OracleJudgment, ParticipantId, PersonCreationParameters, PersonId, PersonUpdateParameters, PlaylistCreationParameters, PlaylistId, PlaylistUpdateParameters, PollInput, PostId, PostReactionId, PrivilegedActor, ProposalDecision, ProposalDetailsOf, ProposalId, ProposalStatus, ReplyId, RewardPaymentType, Series, SeriesId, SeriesParameters, StakePolicy, StorageObjectOwner, StorageProviderId, ThreadId, ThreadMode, Title, UpdatedBody, UpdatedTitle, UploadingStatus, VideoCategoryCreationParameters, VideoCategoryId, VideoCategoryUpdateParameters, VideoCreationParameters, VideoId, VideoUpdateParameters, VoteKind, VoucherLimit, WorkerId, WorkingGroup } from './all';
+import type { ApiTypes } from '@polkadot/api/types';
+import type { BTreeMap, BTreeSet, Bytes, Option, Text, Vec, bool, u32, u64, u8 } from '@polkadot/types';
 import type { BalanceStatus } from '@polkadot/types/interfaces/balances';
 import type { AuthorityId } from '@polkadot/types/interfaces/consensus';
 import type { AuthorityList } from '@polkadot/types/interfaces/grandpa';
@@ -11,7 +12,6 @@ import type { AccountId, Balance, BlockNumber, Hash } from '@polkadot/types/inte
 import type { IdentificationTuple, SessionIndex } from '@polkadot/types/interfaces/session';
 import type { ElectionCompute, EraIndex } from '@polkadot/types/interfaces/staking';
 import type { DispatchError, DispatchInfo, DispatchResult } from '@polkadot/types/interfaces/system';
-import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/events' {
   export interface AugmentedEvents<ApiType> {
@@ -1434,7 +1434,7 @@ declare module '@polkadot/api/types/events' {
       /**
        * Emits on post creation.
        **/
-      PostCreated: AugmentedEvent<ApiType, [PostId, MemberId, ThreadId, Bytes]>;
+      PostCreated: AugmentedEvent<ApiType, [PostId, MemberId, ThreadId, Bytes, bool]>;
       /**
        * Emits on post deleted
        **/

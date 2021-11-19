@@ -42,7 +42,7 @@ const proposalParameters = {
   approvalThresholdPercentage: createType('u32', 10),
   slashingQuorumPercentage: createType('u32', 10),
   slashingThresholdPercentage: createType('u32', 10),
-  requiredStake: createType('Option<u128>', 1000),
+  requiredStake: createType('u128', 1000),
   constitutionality: createType('u32', 1),
 }
 

@@ -2,9 +2,9 @@
 /* eslint-disable */
 
 import type { BTreeMap, BTreeSet, Bytes, Enum, Option, Struct, Text, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types';
-import type { ITuple } from '@polkadot/types/types';
 import type { AccountId, Balance, Hash } from '@polkadot/types/interfaces/runtime';
 import type { AccountInfoWithRefCount } from '@polkadot/types/interfaces/system';
+import type { ITuple } from '@polkadot/types/types';
 
 /** @name AccountInfo */
 export interface AccountInfo extends AccountInfoWithRefCount {}
